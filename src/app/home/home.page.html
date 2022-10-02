@@ -36,7 +36,7 @@
         <!-- Warning message -->
         <ion-item *ngIf="(minNumber >= maxNumber)">
           <ion-text color="warning">
-            <h3>Minimum value must be smaller than Maximum</h3>
+            <p>Minimum value must be smaller than Maximum</p>
           </ion-text>
         </ion-item>
 
@@ -70,9 +70,9 @@
           <ion-item>
             <ion-label position="floating">Guess the generated number</ion-label>
             <ion-input min="0" max="{{maxNumber}}" type="number" placeholder="Introduce a number"
-              [(ngModel)]="guessedNumber" (keyup.enter)="validateNumber(guessedNumber, randomNumber)"></ion-input>
+              [(ngModel)]="introducedNumber" (keyup.enter)="validateNumber(introducedNumber, randomNumber)"></ion-input>
           </ion-item>
-          <ion-button (click)="validateNumber(guessedNumber, randomNumber)" expand="block" shape="round">
+          <ion-button (click)="validateNumber(introducedNumber, randomNumber)" expand="block" shape="round">
             Guess the number
           </ion-button>
         </div>
@@ -92,7 +92,7 @@
         </div>
 
         <!-- For each of the numbers introduced -->
-        <ion-item *ngFor="let number of guessedNumbers">
+        <ion-item *ngFor="let number of introducedNumbers">
           <!-- Checkers -->
           <ion-text color="success" *ngIf="(number == randomNumber)">
             <p>{{number}} was the Random Number. Congrats!</p>

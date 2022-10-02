@@ -10,22 +10,18 @@ export class HomePage {
   constructor() {}
 
   // Initialized variables
-  isHidden = true
   minNumber: number = 0
   maxNumber: number = 100
   randomNumber: number = 0
-  guessedNumber: number = 0
-  guessedNumbers: number[] = []
+  introducedNumber: number = 0
+  introducedNumbers: number[] = []
   totalAttempts: number = 5
   hasAttemptsLeft: boolean = true
   hasFoundNumber: boolean = false
 
   // Resets the game and generates a new number
   generateRandomNumber(minNumber: number, maxNumber: number) {
-    this.isHidden = true
-    this.guessedNumbers = []
-    this.totalAttempts = 5
-    this.hasAttemptsLeft = true
+    this.reset()
 
     if(minNumber >= maxNumber) {
       return 0
@@ -35,10 +31,10 @@ export class HomePage {
   }
 
   // Validates the number. When 5 attempts have been made or finds the random number, ends the game
-  validateNumber(guessedNumber: number, randomNumber: number) {
-    this.guessedNumbers.push(guessedNumber)
+  validateNumber(introducedNumber: number, randomNumber: number) {
+    this.introducedNumbers.push(introducedNumber)
 
-    if(guessedNumber != randomNumber) {
+    if(introducedNumber != randomNumber) {
       this.totalAttempts--
     } else {
       this.hasFoundNumber = true
@@ -47,18 +43,20 @@ export class HomePage {
     if(this.totalAttempts == 0) {
       this.hasAttemptsLeft = false
     }
-    this.guessedNumber = 0
+
+    // Resets the input
+    this.introducedNumber = 0
   }
 
   // Reset all
   reset() {
-    this.isHidden = true
     this.minNumber = 0
     this.maxNumber = 100
     this.randomNumber = 0
-    this.guessedNumber = 0
-    this.guessedNumbers = []
+    this.introducedNumber = 0
+    this.introducedNumbers = []
     this.totalAttempts = 5
     this.hasAttemptsLeft = true
+    this.hasFoundNumber = false
   }
 }

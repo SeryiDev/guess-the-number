@@ -22,7 +22,6 @@ export class HomePage {
   // Resets the game and generates a new number
   generateRandomNumber(minNumber: number, maxNumber: number) {
     this.randomNumber = 0
-    this.introducedNumber = 0
     this.introducedNumbers = []
     this.totalAttempts = 5
     this.hasAttemptsLeft = true

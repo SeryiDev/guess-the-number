@@ -16,20 +16,15 @@
             <p>Generate a random number between min and max values.</p>
           </ion-text>
         </ion-item>
-        <ion-item>
-          <ion-text color="danger">
-            <p>You have {{totalAttempts}} attempts left.</p>
-          </ion-text>
-        </ion-item>
         <!-- Labels and inputs for minimum and maximum -->
         <ion-item>
           <ion-label position="floating">Min (not included)</ion-label>
-          <ion-input min="0" max="{{maxNumber - 1}}" type="number" placeholder="Min" [(ngModel)]="minNumber" required>
+          <ion-input min="0" max="{{maxNumber - 2}}" type="number" placeholder="Min" [(ngModel)]="minNumber" required>
           </ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Max</ion-label>
-          <ion-input min="{{minNumber + 1}}" type="number" placeholder="Max" [(ngModel)]="maxNumber" required>
+          <ion-input min="{{minNumber + 2}}" type="number" placeholder="Max" [(ngModel)]="maxNumber" required>
           </ion-input>
         </ion-item>
 
@@ -41,9 +36,9 @@
         </ion-item>
 
         <!-- Buttons -->
-        <ion-button (click)="generateRandomNumber(minNumber, maxNumber)" expand="block" shape="round">
+        <ion-button (click)="generateRandomNumber(minNumber, maxNumber)" expand="block" shape="round" [ngStyle]="randomNumber != 0 && {'--background':'green'}">
           Generate Random Number</ion-button>
-        <ion-button (click)="reset()" expand="block" shape="round">Reset</ion-button>
+        <ion-button (click)="reset()" expand="block" shape="round" [ngStyle]="!hasAttemptsLeft && {'--background':'red'}">Reset</ion-button>
       </ion-col>
 
       <!-- 2nd Column-->
@@ -52,7 +47,7 @@
         <!-- Info message -->
         <ion-item *ngIf="(randomNumber == 0)">
           <ion-text color="warning">
-            <h3>Waiting for a random number.</h3>
+            <h5>Waiting for a random number.</h5>
           </ion-text>
         </ion-item>
 
@@ -62,7 +57,12 @@
           <!-- Success message -->
           <ion-item>
             <ion-text color="success">
-              <h3>Random number generated.</h3>
+              <h5>Random number generated.</h5>
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-text color="danger">
+              <p>You have {{totalAttempts}} attempts left.</p>
             </ion-text>
           </ion-item>
 
